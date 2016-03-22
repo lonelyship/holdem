@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="jquery.js"></script>
+
+<!-- 調用jQuery版MP3播放器 -->
+<script src="audioplayer.js"></script>
+<link rel="stylesheet" href="audioplayer.css" />
+<meta charset="utf-8">
+<title>德州撲克Ｘ爐石戰記</title>
+
+<style>
+#money {
+	position: fixed;
+	width: 6%;
+	right: 15%;
+	bottom: 15%;
+}
+
+#myMoney {
+	position: fixed;
+	font-size: 2.5em;
+	right: 1%;
+	bottom: 15%;
+	color: orange;
+}
+
+#bet {
+	position: fixed;
+	width: 6%;
+	right: 15%;
+	bottom: 1%;
+}
+
+#totalBet {
+	position: fixed;
+	font-size: 2.5em;
+	right: 1%;
+	bottom: 1%;;
+	color: orange;
+}
+
+#myCardOne {
+	position: fixed;
+	width: 8%;
+	left: 45%;
+	bottom: 2%;
+	display: none;
+}
+
+#myCardTwo {
+	position: fixed;
+	width: 8%;
+	left: 48%;
+	bottom: 2%;
+	display: none;
+}
+
+#comCardOne {
+	position: fixed;
+	width: 8%;
+	left: 46%;
+	top: 2%;
+	display: none;
+}
+
+#comCardTwo {
+	position: fixed;
+	width: 8%;
+	left: 48%;
+	top: 2%;
+	display: none;
+}
+
+#coverComOne {
+	position: fixed;
+	width: 8%;
+	left: 45%;
+	top: 2%;
+	display: none;
+}
+
+#coverComTwo {
+	position: fixed;
+	width: 8%;
+	left: 49%;
+	top: 2%;
+	display: none;
+}
+
+#pCardOne {
+	position: fixed;
+	width: 8%;
+	left: 25%;
+	top: 40%;
+	display: none;
+}
+
+#pCardTwo {
+	position: fixed;
+	width: 8%;
+	left: 35%;
+	top: 40%;
+	display: none;
+}
+
+#pCardThree {
+	position: fixed;
+	width: 8%;
+	left: 45%;
+	top: 40%;
+	display: none;
+}
+
+#pCardFour {
+	position: fixed;
+	width: 8%;
+	left: 55%;
+	top: 40%;
+	display: none;
+}
+
+#pCardFive {
+	position: fixed;
+	width: 8%;
+	left: 65%;
+	top: 40%;
+	display: none;
+}
+
+#giveCard {
+	position: fixed;
+	width: 10%;
+	right: 45%;
+	top: 5%;
+}
+
+#addBet {
+	position: fixed;
+	width: 10%;
+	right: 31%;
+	top: 5%;
+	display: none;
+}
+
+#pass {
+	position: fixed;
+	width: 10%;
+	right: 21%;
+	top: 5%;
+	display: none;
+}
+
+#quit {
+	position: fixed;
+	width: 10%;
+	right: 11%;
+	top: 5%%;
+	display: none;
+}
+
+#finish {
+	position: fixed;
+	width: 10%;
+	right: 1%;
+	top: 5%%;
+	display: none;
+}
+
+#myResult {
+	position: fixed;
+	text-shadow: 2px 2px 4px #000000;
+	font-size: 4em;
+	left: 5%;
+	bottom: 10%;
+	color: purple;
+	display: none;
+}
+
+#comResult {
+	position: fixed;
+	text-shadow: 2px 2px 4px #000000;
+	font-size: 4em;
+	left: 5%;
+	top: 10%;
+	color: red;
+	display: none;
+}
+
+#myWol {
+	position: fixed;
+	width: 15%;
+	right: 20%;
+	bottom: 7%;
+	display: none;
+}
+
+
+
+#comWol {
+	position: fixed;
+	width: 15%;
+	right: 20%;
+	top: 7%;
+	display: none;
+}
+
+#deathwing{
+ position: fixed;
+ top:25%;
+ width: 15%;
+ display: none;
+
+}
+
+#table{
+
+position: fixed;
+width:100%;
+height:100%;
+z-index: -1; 
+
+}
+
+#background{
+position: fixed;
+top:-1px;
+left:-1px;
+opacity:0.8;
+width:100%;
+height:100%;
+z-index: -2; 
+
+}
+
+#janna{
+position: fixed;
+height:25%;
+width:20%;
+left:23%;
+bottom: 0%;
+}
+
+#walila{
+position: fixed;
+width:20%;
+height:23%;
+left:23%;
+
+}
+</style>
+
+
+</head>
+<body>
+  
+	<img id="myCardOne" src="images/0.jpg" />
+	<img id="myCardTwo" src="images/0.jpg" />
+	<!-- 我的牌       -->
+	<img id="comCardOne" src="images/0.jpg" />
+	<img id="comCardTwo" src="images/0.jpg" />
+	<!-- 電腦的牌   -->
+	<img id="coverComOne" src="images/0.jpg" />
+	<img id="coverComTwo" src="images/0.jpg" />
+	<!-- 遮住電腦的牌  -->
+
+	<img id="pCardOne" src="images/0.jpg" />
+	<img id="pCardTwo" src="images/0.jpg" />
+	<img id="pCardThree" src="images/0.jpg" />
+	<!-- 公有牌          -->
+	<img id="pCardFour" src="images/0.jpg" />
+	<img id="pCardFive" src="images/0.jpg" />
+
+	<img id="money" src="images/money.png" />
+	<img id="bet" src="images/bet.png" />
+
+	<img id="myWol" src="images/win.png"></img>
+	<img id="comWol" src="images/win.png"></img>
+	
+	<!--顯示贏或輸(winOrlost)-->
+
+	<img class="button" id="giveCard" src="images/givecard.png" />
+	<img class="button" id="addBet" src="images/addBet.png" />
+	<img class="button" id="pass" src="images/pass.png" />
+	<img class="button" id="quit" src="images/quit.png" />
+	<img class="button" id="finish" src="images/finish.png" />
+	
+	<img class="button" id="janna" src="images/janna.png"  />
+	<img class="button" id="walila" src="images/walila.png"/>
+	<img id="table" src="images/table.png"/>
+	<img id="background" src="images/background.jpg">
+
+	<img id="deathwing" src="images/deathwing.png" class="special"/>
+				
+
+
+
+	<div id="myResult"></div>
+	<div id="comResult"></div>
+	<div id="myMoney"></div>
+	<div id="totalBet"></div>
+
+	<div id="backGroundMusic"
+		style="position: fixed; width: 20%; bottom: 0; left: 0">
+		<audio src="music/gameking.mp3" preload="auto" controls loop="loop"></audio>
+	</div>
+
+	<script>	
+		var card = [ "images/0.jpg","images/1.jpg","images/2.jpg","images/3.jpg","images/4.jpg",
+		             "images/5.jpg","images/6.jpg","images/7.jpg","images/8.jpg","images/9.jpg", 
+		             "images/10.jpg","images/11.jpg","images/12.jpg","images/13.jpg","images/14.jpg",
+		             "images/15.jpg","images/16.jpg","images/17.jpg","images/18.jpg","images/19.jpg",
+		             "images/20.jpg","images/21.jpg","images/22.jpg","images/23.jpg","images/24.jpg",
+		             "images/25.jpg","images/26.jpg","images/27.jpg","images/28.jpg","images/29.jpg",
+				     "images/30.jpg","images/31.jpg","images/32.jpg","images/33.jpg","images/34.jpg",
+				     "images/35.jpg","images/36.jpg","images/37.jpg","images/38.jpg","images/39.jpg",
+				     "images/40.jpg","images/41.jpg","images/42.jpg","images/43.jpg","images/44.jpg",
+				     "images/45.jpg","images/46.jpg","images/47.jpg","images/48.jpg","images/49.jpg",
+				     "images/50.jpg","images/51.jpg","images/52.jpg","images/53.jpg" ];
+		
+		
+		
+	     $( 'audio' ).audioPlayer(
+				    {
+				    	                                       //設定音樂播放器
+				       
+				        classPrefix: 'audioplayer',
+				        strPlay: 'Play',
+				        strPause: 'Pause',
+				        strVolume: 'Volume'
+				    });
+		
+		
+		
+
+		$(document).ready(function() {
+			
+			$(".button").css({
+				
+				"cursor":"pointer"
+			});
+			                                          //變更可以按的圖上的鼠標
+            $(".special").css({
+				
+				"cursor":"pointer"
+			});
+	
+//=====================以下設定音效========================			
+			var winSound= new Audio("music/win.wav");
+			var loseSound=new Audio("music/lose.wav");
+			var tieSound= new Audio("music/tie.wav");
+			var addBetSound=new Audio("music/addBet.mp3");
+			var finishSound=new Audio("music/finish.mp3");
+			
+			var jannaThreatSound=new Audio("music/jannaThreat.mp3");
+			var walilaThreatSound=new Audio("music/walilaThreat.mp3");
+			
+			var deathwingSound=new Audio("music/deathwing.mp3");
+			
+			$("#janna").click(function(){
+				
+				jannaThreatSound.pause();       //設個function使連按時音效不會中斷
+				jannaThreatSound.currentTime=0;
+				jannaThreatSound.play();	
+				
+				
+			});
+			
+
+			$("#walila").click(function(){
+				
+				walilaThreatSound.pause();       //設個function使連按時音效不會中斷
+				walilaThreatSound.currentTime=0;
+				walilaThreatSound.play();	
+				
+				
+			});
+			
+			function addBetSoundOne(){
+				
+				addBetSound.pause();       //設個function使連按時音效不會中斷
+				addBetSound.currentTime=0;
+				addBetSound.play();
+				
+				
+			}
+			
+			
+			
+//=============================================開始寫程式=================================================			
+			var points = 0;
+			var suit = 0;
+			var num = 0; //num:編號
+			var cardRemain = [];
+			var end=false;
+			var myMoney=100000;
+			var totalBet=0;      
+			
+			var deathwingnum=1;   //死亡之翼有一張
+			
+			$("#myMoney").text(myMoney);                    //設定初始金錢=myMoney
+			$("#totalBet").text(totalBet);                  //顯示起始賭池=0
+			//for(var i=0;i<53;i++ )cardRemain[i]=1;        //初始化各張牌張數為1	
+
+			function drawCard() //drawCard():抽一張牌 
+			{
+				points = Math.floor(Math.random() * 13) + 1; //產生隨機點數 1~13
+				//alert("點數為:" + points);
+				suit = Math.floor(Math.random() * 4); //產生隨機花色 0:梅花 1:磚塊 2:愛心 3:黑桃
+				//alert("花色為:" + suit+"  (0:梅花 1:磚塊 2:愛心 3:黑桃)");
+			}
+
+			function getCardNum() { //cardNum():算出卡牌編號
+				//card[num]=卡牌編號 ex:card[0]=jpg.1
+
+			
+					num = suit * 13 + points;
+			       
+			}
+			
+			function finishDrawCard() //抽一張牌 算出編號
+			{
+				do {
+					drawCard();
+					getCardNum();
+				} while (cardRemain[num] == 0); //當牌庫剩餘張數為0時再抽一次
+
+				cardRemain[num] = 0; //在牌庫將該張牌張數歸0
+			}
+
+			var myCardOne=0,myCardTwo=0,comCardOne=0,comCardTwo=0,
+			    pCardOne=0, pCardTwo=0,pCardThree=0,pCardFour=0,pCardFive=0; 
+			
+			                 // 初始化各張牌點數 my(玩家)com(電腦)p(公有)
+			
+			var mySuitOne=0,mySuitTwo=0,comSuitOne=0,comSuitTwo=0,
+			    pSuitOne=0, pSuitTwo=0,pSuitThree=0,pSuitFour=0,pSuitFive=0; 
+			                 
+			             // 初始化各張牌花色 my(玩家)com(電腦)p(公有)
+			    
+			$("#giveCard").click(function() {       // 點擊發牌按鈕發起始牌
+                
+				
+				myMoney-=1000;
+			    totalBet+=1000*2;
+				$("#myMoney").text(myMoney);             //盲注每局1000元
+				$("#totalBet").text(totalBet);           //開局賭池2000元  (玩家+電腦)
+				
+				
+				
+				for (var i = 0; i < 53; i++)
+					cardRemain[i] = 1; //初始化各張牌張數為1	
+
+				finishDrawCard();
+				myCardOne = points;                          //紀錄各張牌點數花色
+				mySuitOne  = suit;
+				$("#myCardOne").attr("src", card[num]);
+				//$("#myCardOne").fadeIn(3000);
+				 
+				finishDrawCard();
+				myCardTwo = points;                          
+				mySuitTwo  = suit;
+				$("#myCardTwo").attr("src", card[num]);
+				//$("#myCardTwo").fadeIn(7000);
+				
+				finishDrawCard();
+				comCardOne = points;                          
+				comSuitOne  = suit;
+				$("#comCardOne").attr("src", card[num]);
+
+				finishDrawCard();
+				comCardTwo = points;                          
+				comSuitTwo  = suit;
+				$("#comCardTwo").attr("src", card[num]);
+				
+				
+				
+				
+				   $("#myCardOne").delay(500).fadeIn();
+				   $("#myCardTwo").delay(1000).fadeIn();
+				   $("#coverComOne").delay(1500).fadeIn();
+				   $("#coverComTwo").delay(2000).fadeIn();         //遮住電腦的牌
+				   
+				
+				$("#giveCard").hide();             //隱藏發牌按鈕
+				$("#addBet").delay(2500).fadeIn();             //顯示加注按鈕
+				$("#pass").delay(2500).fadeIn();                //顯示跟牌按鈕
+				$("#quit").delay(2500).fadeIn();               //顯示棄牌按鈕
+				
+			});
+			
+			             
+			$("#addBet").click(function() {            
+			             
+			     addBetSoundOne();           //播放加注音效         
+				
+				
+				
+			     myMoney-=1000;                           //一次加注1000        
+			     totalBet+=1000*2;        
+			     $("#myMoney").text(myMoney);             
+				 $("#totalBet").text(totalBet);           //賭池一次增加2000元  (玩家+電腦)        
+			             
+			             
+			                    
+			             
+			});            
+			             
+			var addnum = 0;                       //addnum:跟牌數量
+			
+			$("#pass").click(function() {      //按跟牌按鈕跟牌
+				
+				addnum+=1;
+				switch(addnum){
+				
+				case 1:
+					
+				finishDrawCard();
+				pCardOne = points;                          
+				pSuitOne  = suit;
+				$("#pCardOne").attr("src", card[num]);
+
+				finishDrawCard();
+				pCardTwo = points;                          
+				pSuitTwo  = suit;
+				$("#pCardTwo").attr("src", card[num]);
+				
+				finishDrawCard();
+				pCardThree = points;                          
+				pSuitThree  = suit;
+				$("#pCardThree").attr("src", card[num]);
+				$("#pCardOne").delay(500).fadeIn(); 
+				$("#pCardTwo").delay(1000).fadeIn(); 
+			    $("#pCardThree").delay(1500).fadeIn();       //顯示我方牌及電腦牌
+			    
+			    
+			    $("#addBet").hide().delay(2000).fadeIn();             //隱藏加注按鈕2.5秒
+				$("#pass").hide().delay(2000).fadeIn();                 //隱藏跟牌按鈕2.5秒
+				$("#quit").hide().delay(2000).fadeIn();               //隱藏棄牌按鈕2.5秒
+			    
+			    
+			    
+				break;
+				
+				
+				
+				case 2:
+				finishDrawCard();
+				pCardFour = points;                          
+				pSuitFour  = suit;
+				$("#pCardFour").attr("src", card[num]);
+				$("#pCardFour").delay(500).fadeIn();             //顯示公有第四張牌
+				
+			    $("#addBet").hide().delay(500).fadeIn();             //隱藏加注按鈕0.5秒
+				$("#pass").hide().delay(500).fadeIn();                 //隱藏跟牌按鈕0.5秒
+				$("#quit").hide().delay(500).fadeIn();               //隱藏棄牌按鈕0.5秒
+                break;
+                
+				case 3:
+				finishDrawCard();
+				pCardFive = points;                          
+				pSuitFive  = suit;
+				$("#pCardFive").attr("src", card[num]);
+				$("#pCardFive").delay(500).fadeIn();              //顯示公有第五張牌
+				
+			    $("#addBet").hide().delay(500).fadeIn();             //隱藏加注按鈕0.5秒
+				$("#pass").hide().delay(500).fadeIn();                 //隱藏跟牌按鈕0.5秒
+				$("#quit").hide().delay(500).fadeIn();               //隱藏棄牌按鈕0.5秒
+				
+				if(deathwingnum==1)$(".special").delay(500).fadeIn();           //顯示特殊卡
+				break;
+				
+				case 4:
+				end=true;     //結算
+				//alert(end);
+				if(end==true){
+					addnum=0;	                   //addnum 歸0
+					               
+					$("#pass").hide();             //跟完三張牌後隱藏看牌按鈕
+					$("#addBet").hide();           //隱藏加注按鈕
+					$("#quit").hide();             //隱藏棄牌按鈕
+					$("#coverComOne").hide();
+					$("#coverComTwo").hide();
+					$("#comCardOne").fadeIn();  
+					$("#comCardTwo").fadeIn();         //顯示電腦的牌
+					
+					$("#deathwing").hide();
+					
+					Result();
+	
+					end=false;                      //將結算的布林直重新丟回false
+				}
+				break;
+				
+				
+				case 5:
+					
+					finishDrawCard();
+					pCardOne = points;                          
+					pSuitOne  = suit;
+					$("#pCardOne").attr("src", card[num]);
+
+					finishDrawCard();
+					pCardTwo = points;                          
+					pSuitTwo  = suit;
+					$("#pCardTwo").attr("src", card[num]);
+					
+					finishDrawCard();
+					pCardThree = points;                          
+					pSuitThree  = suit;
+					$("#pCardThree").attr("src", card[num]);
+					
+					finishDrawCard();
+					pCardFour = points;                          
+					pSuitFour  = suit;
+					$("#pCardFour").attr("src", card[num]);
+					
+					finishDrawCard();
+					pCardFive = points;                          
+					pSuitFive  = suit;
+					$("#pCardFive").attr("src", card[num]);
+					
+					
+					deathwingnum=1;                //死亡之翼張數回復1張
+					
+					$(".special").hide();          //隱藏效果卡
+					
+					$("#pCardOne").delay(500).fadeIn();  
+					$("#pCardTwo").delay(1000).fadeIn();  
+				    $("#pCardThree").delay(1500).fadeIn();        //顯示公有牌
+					$("#pCardFour").delay(2000).fadeIn();               
+					$("#pCardFive").delay(2500).fadeIn();   
+			
+					$("#pass").hide().delay(2500).fadeIn();
+					
+					break;
+					
+					
+					
+				
+				
+				
+				default :
+					
+				
+					end=true;     //結算
+					//alert(end);
+					if(end==true){
+						addnum=0;	                   //addnum 歸0
+				           
+						$("#pass").hide();             //跟完三張牌後隱藏看牌按鈕
+						$("#addBet").hide();           //隱藏加注按鈕
+						$("#quit").hide();             //隱藏棄牌按鈕
+						$("#coverComOne").hide();
+						$("#coverComTwo").hide();
+						$("#comCardOne").fadeIn();  
+						$("#comCardTwo").fadeIn();          //顯示電腦的牌
+						
+						$(".special").hide();          //隱藏效果卡
+						
+						Result();
+		
+						end=false;                      //將結算的布林直重新丟回false
+					}
+					break;
+				}
+			});	 
+			
+			
+			
+			
+			
+			
+			$("#quit").click(function(){
+				
+				   addnum=0;              //將跟牌數量歸0;
+				   
+				    
+				   totalBet=0;
+				   $("#totalBet").text(0); //將賭池金額歸0
+				
+				   $("#myCardOne").hide();
+				   $("#myCardTwo").hide();
+				   $("#comCardOne").hide();
+				   $("#comCardTwo").hide();
+				   $("#coverComOne").hide();
+				   $("#coverComTwo").hide(); 
+				   $("#pCardOne").hide();
+				   $("#pCardTwo").hide();
+				   $("#pCardThree").hide();
+				   $("#pCardFour").hide();
+				   $("#pCardFive").hide();              //清空檯桌
+				   $("#myResult").hide();
+				   $("#comResult").hide();
+				   
+				   $("#deathwing").hide();
+				   
+				   $("#quit").hide();                   //隱藏棄牌按鈕
+				   $("#addBet").hide();                 //隱藏加注按鈕
+				   $("#pass").hide();                   //隱藏跟牌按鈕
+				   $("#giveCard").show();               //顯示發牌按鈕
+				   
+				
+				
+			 });
+			
+			
+			
+//==============================以下為判斷牌形及點數花色之演算法========================			
+			
+//========================================結算玩家的牌形====================================================		
+				var myLevel=0;  var comLevel=0;               //設定玩家及電腦牌形初始值為0
+				
+			    //myLevel =0~8    comLevel=0~8
+				
+				//牌形有9種可能 :同花順(8) 四條(7) 同花(6) 葫蘆(5) 順子(4) 三條(3) 兩對(2) 一對(1) 高牌(0)
+			  
+				
+
+					   function Result(){
+						 
+							var myAllPoints=[];                      //各牌點數1~13
+							var myAllSuit=[];                        //各牌花色 0~3 (0:梅花 1:磚塊 2:愛心 3:黑桃)
+							var myCardResult=[];                     //1~13各點張數  
+							
+							myAllPoints=[myCardOne,myCardTwo,pCardOne, 
+									   pCardTwo,pCardThree,pCardFour,pCardFive];
+							myAllSuit=[mySuitOne,mySuitTwo,pSuitOne, 
+									   pSuitTwo,pSuitThree,pSuitFour,pSuitFive];
+							
+					   
+							
+							var straightFlush= false;        //同花順
+							var fourOfAKind  = false;        //四條
+							var flush        = false;        //同花
+							var fullHouse    = false;        //葫蘆
+							var straight     = false;        //順子
+							var threeOfAKind = false;        //三條
+						    var twoPair      = false;        //兩對
+						    var onePair      = false;        //一對 
+						    var highCard     = false;        //高牌
+						    
+						    var myX=[];           //建立一個myX矩陣 用來存放我的牌形中最大點數   EX: myX[3]=8代表兩對中最大點數為8 
+						                          //同花順(8) 四條(7) 同花(6) 葫蘆(5) 順子(4) 三條(3) 兩對(2) 一對(1) 高牌(0)
+						   						    
+						    var myS=[];           //建立一個myS矩陣用來存最大點數之花色
+						                          
+						    for(var i=0;i<=8;i++){myX[i]=0; myS[i]=0;}          //初始化各陣列
+						    
+				for(var i=0;i<13;i++)myCardResult[i]=0;   //初始化1~13各點張數	  
+						
+				for(var i=0;i<7;i++)myCardResult[myAllPoints[i]-1]+=1; //計算1~13點各點張數
+						    
+			//for(var i=0;i<13;i++)alert((i+1)+"點"+myCardResult[i]+"張");		 alert各點數之張數   
+				
+				var myTempOne=[];
+				var myTempTwo=[];
+				for(var i=0;i<13;i++)
+				  {	
+					myTempOne[i] = myCardResult[i];  //將 myCardResult[]複製給myTempOne[]及myTempTwo[]
+					myTempTwo[i] = myCardResult[i];
+                  } 		        
+				//以下在判斷我的牌符合哪種牌形  以及該牌形之最大點數		    
+				for(var i=0;i<13;i++)
+				  {
+					
+					 if(myCardResult[i]==4)
+						 {
+						  fourOfAKind=true;  //如果其中一個點數有四張 四條成立
+						  if(i+1>myX[7])myX[7]=i+1; //牌形為四條時最大點數為(i+1)點
+						  if(myX[7]==1)myX[7]=14;    //如果愈打最大點數為Ace 暫時將最大點數設為14
+						 }
+					
+					 else if(myCardResult[i]==3)        
+					  {
+						
+						threeOfAKind=true;                     //如果其中一個點數有三張 三條成立
+						 if(i+1>myX[3])myX[3]=i+1; 
+						 if(myX[3]==1)myX[3]=14;                              
+						                            //牌形為三條時最大點數為(i+1)點
+						myTempOne[i]=0;             //把myTempOne[]中該點張數歸0
+						for(var j=0;j<13;j++)
+						{
+						 if(myTempOne[j]>=2)
+							 {
+							  fullHouse=true;	  //如果其中一個點數有三張 而且另一個點數有兩張以上 則葫蘆成立 
+							  if(i+1>myX[5])myX[5]=i+1; 
+								 if(myX[5]==1)myX[5]=14;              //牌形為葫蘆時最大點數為(i+1)
+							 }
+						}	                                  
+						 
+						myTempOne[i]=3;           //回復myTempOne[i]=3
+					  } 
+					  else if(myCardResult[i]==2)             
+						  {
+						    onePair=true;                     //如果如果其中一個點數有兩張 一對成立
+						    if(i+1>myX[1])myX[1]=i+1; 
+							 if(myX[1]==1)myX[1]=14;                            //牌形為一對時最大點數為(i+1)
+						    myTempTwo[i]=0;                     //把myTempTwo[]中該點張數歸0
+						    for(var j=0;j<13;j++)
+							{
+						     if(myTempTwo[j]==2)
+						     {	
+						     twoPair=true;    //如果如果其中一個點數有兩張 而且另一個點數有兩張兩對成立
+						     if(i+1>myX[2])myX[2]=i+1; 
+							 if(myX[2]==1)myX[2]=14;           //當牌形為兩對時最大點數為(i+1)點
+						     }
+							}                                 
+						  
+						    myTempTwo[i]=2;                   //回復myTempTwo[i]=2;
+						  }
+					  
+					   else if(myCardResult[i]==1){
+						   
+						  highCard=true;
+						     if(i+1>myX[0])myX[0]=i+1; 
+							 if(myX[0]==1)myX[0]=14;             //當牌形為高牌時大點數為(i+1)點
+						  
+					  }
+					
+					
+				   }
+				
+
+	               //以下判斷是否為順子,如果是順子 ,找出順子中的最大點數給myX[4]存 ;
+	                          //myCardResult[i] (i=[0~12]   :1~13 點各個點張數)
+				        //最大的順子為  (9 , 10 , 11 , 12, 1)                                         
+	                          
+	                          
+                      var myTempF=[];          // 創一個	myTempF[i]陣列存個點張數  (i=0~13)	
+                                               // myTempF[13]用來複製 myTempF[0]的張數
+                                               //用來判斷 順子[10,11,12,13,1]的情形
+				                                                 
+				    for(var i=0;i<13;i++)
+				    	 {
+				    	
+                      myTempF[i]=myCardResult[i];   		 //myTempF[i]複製myCardResult[i]		    	
+				    	                                     //存1~13各點張數
+				    	 }
+                      
+                      myTempF[13]=myTempF[0];        // myTempF[13]用來複製 myTempF[0](一點) 的張數
+                      
+                      
+                    var count=0;                   //count用來記錄出現連續幾個數字,如果count>=5則為順子
+                  
+                     for(var i=0;i<14;i++)
+				      {
+                    	   if(myTempF[i]>=1)count++;   
+                    	   
+                    	   else count=0;                 //若myTempF[i]<1 代表連續數字中斷 把count歸0
+                    	 
+                    	   
+                    	   
+                    	    if(count>=5)
+                    	    	{
+                    	 
+    
+                    	    	straight     = true;	
+                    	    	myX[4]= (i+1);              //如果為順子,myX[4]最大點數為(i+1)
+                    	    	                            //若最大點數為Ace,暫時存為14,後面再處理回1
+                    	    	
+                    	    	}
+                    	 
+                    	 
+				      }                                           
+				                                                 
+				
+				
+				
+				
+				
+				
+				
+				
+				//判斷是否為同花 並找出同花時的花色及最大數字
+
+			    var mySuitCount=[];      //mySuitCount[] 各種花色總張數
+					    for(var i=0;i<4;i++)mySuitCount[i]=0;
+					    
+					    for(var i=0;i<7;i++)
+					    	 {
+					    	
+					    	 mySuitCount[myAllSuit[i]]+=1;
+						    
+					    	 }
+				for(var i=0;i<4;i++)
+				  {
+					 var temp=0;
+				    if(mySuitCount[i]>=5)
+				    {
+				    	
+				    	
+				    
+				    	for(var j=0;j<7;j++)
+				    	 {
+				    	  
+				    	 if(myAllSuit[j]==i)
+				    		{ 
+				    	
+				    		 if(myAllPoints[j]==1)myX[6]=14;
+				    		 
+				    		 else if(myAllPoints[j]>temp)              
+				    		    {
+				    			 
+				    			 
+				    			 myX[6]=myAllPoints[j];       //算出同花時的最大點數
+				    			 
+				    			 
+				    		    }
+				    		 
+				    		  temp=myX[6];
+				    		 
+				    		}
+				    	 }
+				    	
+				    	
+				    	flush=true;           //如果其中一花色超過5張 同花成立
+				    }
+				    
+			      }
+				
+				
+				
+				
+				
+				 for(var i=0;i<=8;i++)if(myX[i]==14)myX[i]=1;  //判斷完最大點數後 如果myX[i]=14; 將myX[i]回復為Ace
+				
+				
+				
+				 //當雙方牌形為兩對或一對或高牌時 最大點數可能與對手相同 這時候需用myS[]比較花色 
+				
+				 for(var i=0;i<=8;i++)
+				  {
+					                // 同花順(8) 四條(7) 同花(6) 葫蘆(5) 順子(4) 三條(3) 兩對(2) 一對(1) 高牌(0)
+					 
+					 for(var j=0;j<7;j++)
+					 {
+						if(myAllPoints[j]==myX[i])   //如果我的牌中第j張牌之點數等於i牌形的最大點數時
+							{
+							 if(myAllSuit[j]>=myS[i])  //如果我的牌中第j張牌之花色>=myS[i] (先前最大點數之花色) 
+							  {
+							  myS[i]=myAllSuit[j]    //紀錄最大點數之花色為第j張牌之花色
+							            
+							  }
+							   
+							}                           
+					 }
+			      }
+				
+				       
+				 
+				 
+				 
+					
+			   //現在已取得 myX[0~8]各牌形最大點數  myS[0~8]:各牌形最大點數之花色 (0:梅花 1:磚塊 2:愛心 3:黑桃)		
+						    
+			  
+		 if(straightFlush==true){$("#myResult").text("同花順");myLevel=8;}				    
+		  else if(fourOfAKind==true){$("#myResult").text("四條");myLevel=7;}
+		   else if(flush==true){$("#myResult").text("同花");myLevel=6;}
+		    else if(fullHouse==true){$("#myResult").text("葫蘆");myLevel=5;}
+		     else if(straight==true){$("#myResult").text("順子");myLevel=4;}
+              else if(threeOfAKind==true){$("#myResult").text("三條");myLevel=3;}
+		       else if(twoPair==true){$("#myResult").text("兩對");myLevel=2;}
+		        else if(onePair==true){$("#myResult").text("一對");myLevel=1;}
+				  else {$("#myResult").text("高牌");myLevel=0;}
+		 
+		                
+			    
+		                      $("#myResult").delay(500).fadeIn();                 //顯示玩家牌形結果
+		 
+		// alert("我方牌形最大點數為"+myX[myLevel]+"\n最大點數之花色為"+myS[myLevel]+"\n (0:梅花 1:磚塊 2:愛心 3:黑桃)" )                    
+		                      
+	   
+					  
+//==========================================結算電腦的牌形===========================================		
+		    var comAllPoints=[];                      //各牌點數1~13
+			var comAllSuit=[];                        //各牌花色 0~3 (0:梅花 1:磚塊 2:愛心 3:黑桃)
+			var comCardResult=[];                     //1~13各點張數  
+			
+			comAllPoints=[comCardOne,comCardTwo,pCardOne, 
+					   pCardTwo,pCardThree,pCardFour,pCardFive];
+			comAllSuit=[comSuitOne,comSuitTwo,pSuitOne, 
+					   pSuitTwo,pSuitThree,pSuitFour,pSuitFive];
+			
+	   
+			
+			var CstraightFlush= false;        //同花順
+			var CfourOfAKind  = false;        //四條
+			var Cflush        = false;        //同花
+			var CfullHouse    = false;        //葫蘆
+			var Cstraight     = false;        //順子
+			var CthreeOfAKind = false;        //三條
+		    var CtwoPair      = false;        //兩對
+		    var ConePair      = false;        //一對 
+		    var CchighCard     = false;        //高牌
+		    
+		    var comX=[];           //建立一個comX矩陣 用來存放我的牌形中最大點數   EX:        comX[3]=8代表兩對中最大點數為八 
+		                          //同花順(8) 四條(7) 同花(6) 葫蘆(5) 順子(4) 三條(3) 兩對(2) 一對(1) 高牌(0)
+		   						    
+		    var comS=[];           //建立一個comS矩陣用來存最大點數之花色
+		                          
+		    for(var i=0;i<=8;i++){comX[i]=0; comS[i]=0;}          //初始化各陣列
+		    
+for(var i=0;i<13;i++)comCardResult[i]=0;   //初始化1~13各點張數	  
+		
+for(var i=0;i<7;i++)comCardResult[comAllPoints[i]-1]+=1; //計算1~13點各點張數
+		    
+//for(var i=0;i<13;i++)alert((i+1)+"點"+comCardResult[i]+"張");		 alert各點數之張數   
+
+var comTempOne=[];
+var comTempTwo=[];
+for(var i=0;i<13;i++)
+{	
+	comTempOne[i] = comCardResult[i];  //將 comCardResult[]複製給comTempOne[]及comTempTwo[]
+	comTempTwo[i] = comCardResult[i];
+} 		        
+//以下在判斷我的牌符合哪種牌形  以及該牌形之最大點數		    
+for(var i=0;i<13;i++)
+{
+	
+	 if(comCardResult[i]==4)
+		 {
+		  CfourOfAKind=true;  //如果其中一個點數有四張 四條成立
+		  if(i+1>comX[7])comX[7]=i+1; //牌形為四條時最大點數為(i+1)點
+		  if(comX[7]==1)comX[7]=14;    //如果愈打最大點數為Ace 暫時將最大點數設為14
+		 }
+	
+	 else if(comCardResult[i]==3)        
+	  {
+		
+		CthreeOfAKind=true;                     //如果其中一個點數有三張 三條成立
+		 if(i+1>comX[3])comX[3]=i+1; 
+		 if(comX[3]==1)comX[3]=14;                              
+		                            //牌形為三條時最大點數為(i+1)點
+		comTempOne[i]=0;             //把comTempOne[]中該點張數歸0
+		for(var j=0;j<13;j++)
+		{
+		 if(comTempOne[j]>=2)
+			 {
+			  CfullHouse=true;	  //如果其中一個點數有三張 而且另一個點數有兩張以上 則葫蘆成立 
+			  if(i+1>comX[5])comX[5]=i+1; 
+				 if(comX[5]==1)comX[5]=14;              //牌形為葫蘆時最大點數為(i+1)
+			 }
+		}	                                  
+		 
+		comTempOne[i]=3;           //回復comTempOne[i]=3
+	  } 
+	  else if(comCardResult[i]==2)             
+		  {
+		    ConePair=true;                     //如果如果其中一個點數有兩張 一對成立
+		    if(i+1>comX[1])comX[1]=i+1; 
+			 if(comX[1]==1)comX[1]=14;                            //牌形為一對時最大點數為(i+1)
+		    comTempTwo[i]=0;                     //把comTempTwo[]中該點張數歸0
+		    for(var j=0;j<13;j++)
+			{
+		     if(comTempTwo[j]==2)
+		     {	
+		     CtwoPair=true;    //如果如果其中一個點數有兩張 而且另一個點數有兩張兩對成立
+		     if(i+1>comX[2])comX[2]=i+1; 
+			 if(comX[2]==1)comX[2]=14;           //當牌形為兩對時最大點數為(i+1)點
+		     }
+			}                                 
+		  
+		    comTempTwo[i]=2;                   //回復comTempTwo[i]=2;
+		  }
+	  
+	   else if(comCardResult[i]==1){
+		   
+		  ChighCard=true;
+		     if(i+1>comX[0])comX[0]=i+1; 
+			 if(comX[0]==1)comX[0]=14;             //當牌形為高牌時大點數為(i+1)點
+		  
+	  }
+	
+	
+}
+
+//以下判斷是否為順子,如果是順子 ,找出順子中的最大點數給myX[4]存 ;
+//comCardResult[i] (i=[0~12]   :1~13 點各個點張數)
+//最大的順子為  (9 , 10 , 11 , 12, 1)                                         
+
+
+var comTempF=[];          // 創一個	comTempF[i]陣列存個點張數  (i=0~13)	
+                 // comTempF[13]用來複製 comTempF[0]的張數
+                 //用來判斷 順子[10,11,12,13,1]的情形
+                                   
+for(var i=0;i<13;i++)
+{
+
+comTempF[i]=comCardResult[i];   		 //comTempF[i]複製comCardResult[i]		    	
+                               //存1~13各點張數
+}
+
+comTempF[13]=comTempF[0];        // comTempF[13]用來複製 comTempF[0](一點) 的張數
+
+
+var count=0;                   //count用來記錄出現連續幾個數字,如果count>=5則為順子
+for(var i=0;i<14;i++)
+{
+if(comTempF[i]>=1)count++;   
+
+else count=0;                 //若comTempF[i]<1 代表連續數字中斷 把count歸0
+
+
+
+if(count>=5)
+	{
+	Cstraight     = true;	
+	comX[4]= (i+1);              //如果為順子,comX[4]最大點數為(i+1)
+	                            //若最大點數為Ace,暫時存為14,後面再處理回1
+	
+	}
+
+
+}                                           
+              
+
+
+
+
+
+
+
+
+
+
+
+             //以下判斷是否為同花 並找出同花時的花色及最大數字
+
+var comSuitCount=[];      //comSuitCount[] 各種花色總張數
+	    for(var i=0;i<4;i++)comSuitCount[i]=0;
+	    
+	    for(var i=0;i<7;i++)
+	    	 {
+	    	
+	    	 comSuitCount[comAllSuit[i]]+=1;
+		    
+	    	 }
+for(var i=0;i<4;i++)
+{
+	 var Ctemp=0;
+ if(comSuitCount[i]>=5)
+ {
+ 	
+ 	
+ 
+ 	for(var j=0;j<7;j++)
+ 	 {
+ 	  
+ 	 if(comAllSuit[j]==i)
+ 		{ 
+ 	
+ 		 if(comAllPoints[j]==1)comX[6]=14;
+ 		 
+ 		 else if(comAllPoints[j]>Ctemp)              
+ 		    {
+ 			 
+ 			 
+ 			 comX[6]=comAllPoints[j];       //算出同花時的最大點數
+ 			 
+ 			 
+ 		    }
+ 		 
+ 		  Ctemp=comX[6];
+ 		 
+ 		}
+ 	 }
+ 	
+ 	
+ 	Cflush=true;           //如果其中一花色超過5張 同花成立
+ }
+ 
+}
+
+
+
+
+
+for(var i=0;i<=8;i++)if(comX[i]==14)comX[i]=1;  //判斷完最大點數後 如果comX[i]=14; 將comX[i]回復為Ace
+
+
+
+//當雙方牌形為兩對或一對或高牌時 最大點數可能與對手相同 這時候需比較花色 
+
+for(var i=0;i<=8;i++)
+{
+	                // 同花順(8) 四條(7) 同花(6) 葫蘆(5) 順子(4) 三條(3) 兩對(2) 一對(1) 高牌(0)
+	 
+	 for(var j=0;j<7;j++)
+	 {
+		if(comAllPoints[j]==comX[i])   //如果我的牌中第j張牌之點數等於i牌形的最大點數時
+			{
+			 if(comAllSuit[j]>=comS[i])  //如果我的牌中第j張牌之花色>=comS[i] (先前最大點數之花色) 
+			  {
+			  comS[i]=comAllSuit[j]    //紀錄最大點數之花色為第j張牌之花色
+			            
+			  }
+			   
+			}                           
+	 }
+}
+
+    
+
+
+	
+//現在已取得 comX[0~8]各牌形最大點數  comS[0~8]:各牌形最大點數之花色 (0:梅花 1:磚塊 2:愛心 3:黑桃)		
+		    
+
+if(CstraightFlush==true){$("#comResult").text("同花順");comLevel=8;}				    
+else if(CfourOfAKind==true){$("#comResult").text("四條");comLevel=7;}
+else if(Cflush==true){$("#comResult").text("同花");comLevel=6;}
+else if(CfullHouse==true){$("#comResult").text("葫蘆");comLevel=5;}
+else if(Cstraight==true){$("#comResult").text("順子");comLevel=4;}
+else if(CthreeOfAKind==true){$("#comResult").text("三條");comLevel=3;}
+else if(CtwoPair==true){$("#comResult").text("兩對");comLevel=2;}
+else if(ConePair==true){$("#comResult").text("一對");comLevel=1;}
+else {$("#comResult").text("高牌");comLevel=0;}
+
+     
+
+               $("#comResult").delay(500).fadeIn();                  //顯示電腦牌形結果              
+
+//alert("對方牌形最大點數為"+comX[comLevel]+"\n最大點數之花色為"+comS[comLevel]+"\n (0:梅花 1:磚塊 2:愛心 3:黑桃)" )                    
+		 
+           
+           
+           
+           
+           
+           
+           
+           
+for(var i=0;i<=8;i++)if(myX[i]==1)myX[i]=14;          
+for(var i=0;i<=8;i++)if(comX[i]==1)comX[i]=14;  
+ 
+ //Ace最大!!
+           
+           
+           
+		    var win=false;
+            var even=false;    //平手
+		    
+		      if(myLevel>comLevel)win=true;
+		      
+		      else if(myLevel==comLevel)
+		      {
+		    	  if(myX[myLevel]>comX[comLevel])win=true;
+		    	  
+		    	  
+		    	  else if(myX[myLevel]==comX[comLevel])
+		    		  {
+		    		  
+		    		   if(myS[myLevel]>comS[comLevel])win=true;
+		    		   
+		    		   else if(myS[myLevel]==comS[comLevel])even=true;
+		    		   
+		    		   else win=false;
+		    		  
+		    		  }
+		    	  else win=false;
+		      }
+		    
+		    else win=false;
+		   
+            
+		    if(even==true)
+		    	 {
+		    	  totalBet=totalBet/2;
+		    	 	$("#myWol").attr("src","images/tie.png");
+			    	$("#myWol").delay(1500).fadeIn();       
+			    $("#comWol").attr("src","images/tie.png");
+			    	$("#comWol").delay(1500).fadeIn();       
+		    	  
+		    	  tieSound.play();                             //播放平手音效
+		    	  //alert("!!!!平手!!!!");
+		    	  
+		     }
+            
+		    else if(win==true)
+		    {
+		    	totalBet=totalBet;                //如果贏了賭池金額不變
+		    	
+		    	$("#myWol").attr("src","images/win.png");
+		    	$("#myWol").delay(1500).fadeIn();                  
+		    	$("#comWol").attr("src","images/lose.png");
+		    	$("#comWol").delay(1500).fadeIn();  
+		    	
+		    	
+		    	// 顯示勝負結果
+		    	
+		    	  winSound.play();                         //播放勝利音效
+		    } 	  
+		    else {
+		    	
+		    	totalBet=0;                      //如果輸了賭池歸0
+		    	$("#myWol").attr("src","images/lose.png");
+		    	$("#myWol").delay(1500).fadeIn();             // 顯示勝負結果
+		    $("#comWol").attr("src","images/win.png");
+		    	$("#comWol").delay(1500).fadeIn();  
+		    	loseSound.play();                             //播放音效
+		    }
+		
+		           
+		           
+		 
+		            $("#finish").delay(2500).fadeIn();                    //顯示結算按鈕
+		           
+		           
+	    
+		             myLevel=0;  comLevel=0;   //全部做完將牌力值歸0
+		            
+ 	}
+		
+		$("#finish").click(function() 
+					   {
+			
+	                  //    finishSound.play();            //播放加錢音效		
+      			
+						   addnum=0;	                   //跟牌數量 歸0
+						   
+						   myMoney+=totalBet;             //算出目前玩家全部的錢
+						
+						   totalBet=0;
+						   $("#totalBet").text(0);       //將賭池金額歸0
+				//	setTimeout(function(){$("#myMoney").text(myMoney)},3000);  //三秒後更新目前總額
+						   　
+						   $("#myMoney").text(myMoney);
+				
+						   $("#myCardOne").hide();
+						   $("#myCardTwo").hide();
+						   $("#comCardOne").hide();
+						   $("#comCardTwo").hide();
+						   $("#pCardOne").hide();
+						   $("#pCardTwo").hide();
+						   $("#pCardThree").hide();
+						   $("#pCardFour").hide();
+						   $("#pCardFive").hide();              //清空檯桌
+						   
+						   $("#myResult").hide();
+						   $("#comResult").hide();
+						   $("#myWol").hide();
+						   $("#comWol").hide();          //清空勝負結果
+						   $(".special").hide(); 
+					
+						   
+						   $("#giveCard").show();               //顯示發牌按鈕
+						   $("#finish").hide();                 //隱藏結算按鈕
+					   });
+		   
+					   
+		
+		//====================================特殊卡============================================
+		
+	      $("#deathwing").click(function(){
+	    	  
+	    	  
+	    	  deathwingSound.play();               //播放死亡之翼出場音效
+	    	  
+	    	  
+	    	  myMoney-=5000;                      //死亡之翼售價5000元
+	    	  $("#myMoney").text(myMoney);        //更新錢數
+	    	  
+	  		//在Div內放置Embed並指定其src = 某音效位置
+	  		//javascript寫法
+	  	    //document.getElementById("sounds").innerHTML =
+	  		//<embed width=0 height=0 src="+music[i]+" autostart='true'></embed>";
+	  				
+	  		//$("#sounds").html("<embed width=0 height=0 src="+"music/deathwing.mp3"+" autostart='true'></embed>");
+	  			
+	  		    $("#deathwing").animate({
+	  		      left:"35%",
+	  		      top:"10%",width:"30%"
+	  		      
+	  		    }
+	  		      ,"slow");
+	  		    
+	  		  $("#deathwing").fadeOut(3000);    //死亡之翼過場效果
+	  		  
+	  		  
+	  		  $("#deathwing").animate({        //隱形後返回原位
+	  		   top:"30%",
+	  		   left:"0%",
+	  		   width:"15%"
+	  		      
+	  		   });
+	  		  
+	  		    
+	  		    
+	  		    deathwingnum=0;                      //把死亡之翼張數歸0
+	  		     
+	  		    
+	  	       $("#pCardOne").delay(4500).
+	  	       animate({top:"-300px"}).hide(400).animate({top:"40%"});
+			   $("#pCardTwo").delay(4500).
+			   animate({top:"-300px"}).hide(400).animate({top:"40%"});
+			   $("#pCardThree").delay(4500).
+			   animate({top:"-300px"}).hide(400).animate({top:"40%"});
+			   $("#pCardFour").delay(4500).
+			   animate({top:"-300px"}).hide(400).animate({top:"40%"});
+			   $("#pCardFive").delay(4500).
+			   animate({top:"-300px"}).hide(400).animate({top:"40%"});         
+			   //公有牌飛上去 0.5 秒後隱藏 再下來原位	  		     
+	  		     
+	  		     
+			    addnum=4;
+			   
+			   $("#quit").hide();
+			   $("#addBet").hide();
+			   $("#pass").hide().delay(6000).fadeIn(1000);
+			  
+	  		     
+			
+	  		
+	  	      });
+			
+			
+
+		});
+
+		
+	</script>
+
+</body>
+</html>

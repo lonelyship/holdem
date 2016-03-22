@@ -1,0 +1,147 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    tools:context="com.lonelyship.holdem.MainActivity" >
+
+    <AbsoluteLayout
+        android:id="@+id/AbsoluteLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="371dp"
+            android:src="@drawable/table" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_x="365dp"
+            android:layout_y="22dp"
+            android:src="@drawable/addbet" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_x="448dp"
+            android:layout_y="22dp"
+            android:src="@drawable/pass" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_x="535dp"
+            android:layout_y="20dp"
+            android:src="@drawable/quit" />
+
+        <ImageView
+            android:id="@+id/ImageView04"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:layout_x="283dp"
+            android:layout_y="18dp"
+            android:src="@drawable/card_0" />
+
+        <ImageView
+            android:id="@+id/ImageView02"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:layout_x="282dp"
+            android:layout_y="251dp"
+            android:src="@drawable/card_0" />
+
+        <ImageView
+            android:id="@+id/ImageView01"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:layout_x="317dp"
+            android:layout_y="252dp"
+            android:src="@drawable/card_0" />
+
+        <ImageView
+            android:id="@+id/ImageView03"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:layout_x="184dp"
+            android:layout_y="139dp"
+            android:src="@drawable/card_0" />
+
+        <TextView
+            android:id="@+id/TextView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="613dp"
+            android:layout_y="311dp"
+            android:text="0"
+            android:textColor="#FFFFFF"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="611dp"
+            android:layout_y="283dp"
+            android:text="0"
+            android:textColor="#FFFFFF"
+            android:textSize="30dp" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_x="485dp"
+            android:layout_y="281dp"
+            android:src="@drawable/money" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_x="484dp"
+            android:layout_y="313dp"
+            android:src="@drawable/bet" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="130dp"
+            android:layout_height="100dp"
+            android:layout_x="146dp"
+            android:layout_y="261dp"
+            android:src="@drawable/janna" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="156dp"
+            android:layout_height="120dp"
+            android:layout_x="133dp"
+            android:layout_y="0dp"
+            android:src="@drawable/walila" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:layout_x="318dp"
+            android:layout_y="17dp"
+            android:src="@drawable/card_0" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:layout_x="238dp"
+            android:layout_y="139dp"
+            android:src="@drawable/card_0" />
+
+    </AbsoluteLayout>
+
+</LinearLayout>

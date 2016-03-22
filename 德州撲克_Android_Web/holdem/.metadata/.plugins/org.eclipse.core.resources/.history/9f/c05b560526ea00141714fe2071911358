@@ -1,0 +1,243 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    tools:context="com.lonelyship.holdem.MainActivity" >
+
+    <AbsoluteLayout
+        android:id="@+id/AbsoluteLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/iv_table"
+            android:layout_width="match_parent"
+            android:layout_height="371dp"
+            android:src="@drawable/table" />
+
+        <ImageView
+            android:id="@+id/iv_givecard"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_x="365dp"
+            android:layout_y="22dp"
+            android:src="@drawable/givecard" />
+
+        <ImageView
+            android:id="@+id/iv_addbet"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_x="365dp"
+            android:layout_y="22dp"
+            android:src="@drawable/addbet" />
+
+        <ImageView
+            android:id="@+id/iv_pass"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_x="448dp"
+            android:layout_y="22dp"
+            android:src="@drawable/pass" />
+
+        <ImageView
+            android:id="@+id/iv_quit"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_x="535dp"
+            android:layout_y="22dp"
+            android:src="@drawable/quit" />
+
+        <TextView
+            android:id="@+id/tv_bet"
+            android:layout_width="106dp"
+            android:layout_height="wrap_content"
+            android:layout_x="521dp"
+            android:layout_y="313dp"
+            android:text="0"
+            android:textColor="#FFFFFF"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/tv_money"
+            android:layout_width="107dp"
+            android:layout_height="wrap_content"
+            android:layout_x="517dp"
+            android:layout_y="283dp"
+            android:text="0"
+            android:textColor="#FFFFFF"
+            android:textSize="30dp" />
+
+        <ImageView
+            android:id="@+id/iv_janna"
+            android:layout_width="130dp"
+            android:layout_height="100dp"
+            android:layout_x="146dp"
+            android:layout_y="261dp"
+            android:src="@drawable/janna" />
+
+        <ImageView
+            android:id="@+id/iv_walila"
+            android:layout_width="156dp"
+            android:layout_height="120dp"
+            android:layout_x="133dp"
+            android:layout_y="0dp"
+            android:src="@drawable/walila" />
+
+        <ImageView
+            android:id="@+id/iv_tcard5"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:layout_x="401dp"
+            android:layout_y="140dp"
+            android:src="@drawable/card_0" />
+
+        <ImageView
+            android:id="@+id/iv_tcard4"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:layout_x="352dp"
+            android:layout_y="140dp"
+            android:src="@drawable/card_0" />
+
+        <ImageView
+            android:id="@+id/iv_tcard3"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:layout_x="300dp"
+            android:layout_y="141dp"
+            android:src="@drawable/card_0" />
+
+        <ImageView
+            android:id="@+id/iv_tcard2"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:layout_x="249dp"
+            android:layout_y="140dp"
+            android:src="@drawable/card_0" />
+
+        <ImageView
+            android:id="@+id/iv_tcard1"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:layout_x="197dp"
+            android:layout_y="140dp"
+            android:src="@drawable/card_0" />
+
+        <ImageView
+            android:id="@+id/iv_mtie"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_x="355dp"
+            android:layout_y="294dp"
+            android:src="@drawable/tie" />
+
+        <ImageView
+            android:id="@+id/iv_ctie"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_x="355dp"
+            android:layout_y="28dp"
+            android:src="@drawable/tie" />
+
+        <ImageView
+            android:id="@+id/iv_finish"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_x="535dp"
+            android:layout_y="22dp"
+            android:src="@drawable/finish" />
+
+        <ImageView
+            android:id="@+id/iv_deathwing"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:layout_x="5dp"
+            android:layout_y="99dp"
+            android:src="@drawable/deathwing" />
+
+        <ImageView
+            android:id="@+id/iv_mwin"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_x="355dp"
+            android:layout_y="294dp"
+            android:src="@drawable/win" />
+
+        <ImageView
+            android:id="@+id/iv_cwin"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_x="355dp"
+            android:layout_y="28dp"
+            android:src="@drawable/win" />
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_x="355dp"
+            android:layout_y="28dp"
+            android:src="@drawable/lose" />
+
+        <ImageView
+            android:id="@+id/iv_mlose"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_x="355dp"
+            android:layout_y="294dp"
+            android:src="@drawable/lose" />
+
+        <ImageView
+            android:id="@+id/iv_money"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_x="491dp"
+            android:layout_y="284dp"
+            android:src="@drawable/money" />
+
+        <ImageView
+            android:id="@+id/iv_bet"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_x="489dp"
+            android:layout_y="313dp"
+            android:src="@drawable/bet" />
+
+        <ImageView
+            android:id="@+id/iv_mcard1"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:layout_x="286dp"
+            android:layout_y="260dp"
+            android:src="@drawable/card_0" />
+
+        <ImageView
+            android:id="@+id/iv_mcard2"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:layout_x="311dp"
+            android:layout_y="260dp"
+            android:src="@drawable/card_0" />
+
+        <ImageView
+            android:id="@+id/iv_ccard1"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:layout_x="286dp"
+            android:layout_y="15dp"
+            android:src="@drawable/card_0" />
+
+        <ImageView
+            android:id="@+id/iv_ccard2"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:layout_x="311dp"
+            android:layout_y="15dp"
+            android:src="@drawable/card_0" />
+
+    </AbsoluteLayout>
+
+</LinearLayout>
