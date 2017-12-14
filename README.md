@@ -4,7 +4,7 @@
 <br>
 2016.4月增加Android版本
 <br>
-Add Native Andoird APP version in April,2016
+Add Native Android APP "holdem" in April,2016
 
 ![img1](https://raw.githubusercontent.com/lonelyship/holdem/master/demo_images/20b0sa.gif)
 
